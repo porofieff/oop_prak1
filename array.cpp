@@ -9,30 +9,25 @@ Array::Array()
 
 Array::Array(int numb)
 {
-    number* n_arr = new number[numb];
-    arr = n_arr;
+    number* arr2 = new number[numb];
+    arr = arr2;
     size = numb;
 }
 
-int Array::sizeo()
-{
-    return size;
-}
-
-istream& operator>> (istream& is, Array& a)
+istream& operator >> (istream& is, Array& a)
 {
     for (int i = 0; i < a.size; i++)
     {
-        is >> a.arr[i];
+        is>>a.arr[i];
     }
     return is;
 }
 
-ostream& operator<< (ostream& os, Array& a)
+ostream& operator << (ostream& os, Array& a)
 {
     for (int i = 0; i < a.size; i++)
     {
-        os << a.arr[i] << " ";
+        os<<a.arr[i]<<" ";
     }
     os << endl;
     return os;
@@ -40,27 +35,21 @@ ostream& operator<< (ostream& os, Array& a)
 
 void Array::change_size(int new_size)
 {
-    number* n_arr = new number[new_size];
+    number* arr2 = new number[new_size];
     if (new_size > size)
     {
         for (int i = 0; i < size; i++)
-            n_arr[i] = arr[i];
+            arr2[i] = arr[i];
     }
     else
     {
         for (int i = 0; i < new_size; i++)
-            n_arr[i] = arr[i];
+            arr2[i] = arr[i];
     }
     if(arr != nullptr)
         delete[] arr;
-
-    arr = n_arr;
+    arr = arr2;
     size = new_size;
-}
-
-void Array::change_element(int index, number new_elem)
-{
-    arr[index] = new_elem;
 }
 
 number Array::calculate_arefmetic_avarage()
@@ -77,7 +66,6 @@ number Array::calculate_square()
 {
     number avg = calculate_arefmetic_avarage();
     number sum_dif = 0;
-
     for (int i = 0; i < size; i++)
     {
         sum_dif += (avg-arr[i])*(avg-arr[i]);
@@ -86,40 +74,41 @@ number Array::calculate_square()
     return average_square;
 }
 
-void swap(number *a, number *b)
+void Array::qsort(bool reverse)
 {
-    number temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-void Array::qsort(int left, int right, bool rev) {
-    int i, j;
-    bool swapped;
-    for(i = 0; i < right; i++)
+    for (int i = 0; i < size-1; i++)
     {
-        swapped = false;
-        for(j = 0; j < right - i; j++)
+        for(int j = 0; j < size-1; j++)
         {
-            if(rev == true)
+            if(!reverse)
             {
-                if (arr[j] > arr[j + 1])
+                if(arr[j] > arr[j+1])
                 {
-                    swap(&arr[j], &arr[j + 1]);
-                    swapped = true;
+                    number temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
                 }
             }
-            else if(rev == false)
+            else
             {
-                if (arr[j] < arr[j + 1])
+                if(arr[j] < arr[j+1])
                 {
-                    swap(&arr[j], &arr[j + 1]);
-                    swapped = true;
+                    number temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
                 }
             }
         }
-
-        if (swapped == false)
-            break;
     }
+}
+
+void Array::change_element(int index, number elem)
+{
+    arr[index] = elem;
+}
+
+Array::~Array()
+{
+    if(arr != nullptr)
+        delete[] arr;
 }

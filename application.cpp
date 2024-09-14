@@ -1,6 +1,5 @@
 #include "application.h"
 #include <iostream>
-#include "number.h"
 #include "array.h"
 
 using namespace std;
@@ -31,14 +30,14 @@ int Application::exec()
                 cout << "Standatd deviation - " << arr.calculate_square() << endl;
                 break;
             case 3:
-                cout << "1 - Descending" << endl;
-                cout << "2 - Ascending" << endl;
+                cout << "1 - Ascending" << endl;
+                cout << "2 - Descending" << endl;
                 int reverse;
-                cin>>reverse;
+                cin >> reverse;
                 if (reverse == 1)
-                    arr.qsort(0, arr.sizeo(), false);
+                    arr.qsort(false);
                 else
-                    arr.qsort(0, arr.sizeo(), true);
+                    arr.qsort(true);
                 break;
             case 4:
                 cout << "Input new size" << endl << "> ";
@@ -56,7 +55,7 @@ int Application::exec()
                 arr.change_element(index, elem);
                 break;
             case 6:
-                cout<<arr;
+                cout << arr;
                 break;
             default:
                 break;

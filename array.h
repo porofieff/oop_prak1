@@ -17,8 +17,8 @@ public:
 
     int sizeo();
 
-    friend istream& operator>> (istream&, Array&);
-    friend ostream& operator<< (ostream&, Array&);
+    friend istream& operator >> (istream&, Array&);
+    friend ostream& operator << (ostream&, Array&);
 
     void change_size(int);
     void change_element(int, number);
@@ -26,8 +26,9 @@ public:
     number calculate_arefmetic_avarage();
     number calculate_square();
 
-    void qsort(int, int, bool);
-    int partition(int, int, bool);
+    void qsort(bool);
+
+    ~Array();
 
 };
 
