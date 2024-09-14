@@ -22,9 +22,17 @@ int Application::exec()
             case 0:
                 return 0;
             case 1:
-                cout << "Enter elements" << endl;
-                cin >> arr;
-                break;
+                if (arr.sizeo() == 0)
+                {
+                    cout << "Array is empty" << endl;
+                    break;
+                }
+                else
+                {
+                    cout << "Enter elements" << endl;
+                    cin >> arr;
+                    break;
+                }
             case 2:
                 cout << "Arifmetic avarage - " << arr.calculate_arefmetic_avarage() << endl;
                 cout << "Standatd deviation - " << arr.calculate_square() << endl;

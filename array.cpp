@@ -7,6 +7,10 @@ Array::Array()
     size = 0;
 }
 
+Array::sizeo()
+{
+    return size;
+}
 Array::Array(int numb)
 {
     number* arr2 = new number[numb];
