@@ -93,26 +93,33 @@ void swap(number *a, number *b)
     *b = temp;
 }
 
-void Array::qsort(int left, int right, bool rev)
-{
-    if (left < right) {
-        int pivot = partition(left, right, rev);
-        qsort(left, pivot - 1, rev);
-        qsort(pivot + 1, right, rev);
-    }
-}
-
-int Array::partition(int left, int right, bool rev)
-{
-    int pivot = arr[right];
-    int i = left - 1;
-
-    for (int j = left; j <= right - 1; j++) {
-        if ((rev && arr[j] <= pivot) || (!rev && arr[j] >= pivot)) {
-            i++;
-            swap(&arr[i], &arr[j]);
+void Array::qsort(int left, int right, bool rev) {
+    int i, j;
+    bool swapped;
+    for(i = 0; i < right; i++)
+    {
+        swapped = false;
+        for(j = 0; j < right - i; j++)
+        {
+            if(rev == true)
+            {
+                if (arr[j] > arr[j + 1])
+                {
+                    swap(&arr[j], &arr[j + 1]);
+                    swapped = true;
+                }
+            }
+            else if(rev == false)
+            {
+                if (arr[j] < arr[j + 1])
+                {
+                    swap(&arr[j], &arr[j + 1]);
+                    swapped = true;
+                }
+            }
         }
+
+        if (swapped == false)
+            break;
     }
-    swap(&arr[i + 1], &arr[right]);
-    return i + 1;
 }
